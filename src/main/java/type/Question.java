@@ -11,7 +11,7 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** Stores the information about a question.
- * Updated by JCasGen Mon Sep 28 10:15:23 EDT 2015
+ * Updated by JCasGen Mon Sep 28 11:35:14 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class Question extends ComponentAnnotation {
@@ -99,25 +99,25 @@ public class Question extends ComponentAnnotation {
    
     
   //*--------------*
-  //* Feature: sentence
+  //* Feature: text
 
-  /** getter for sentence - gets The text of the question.
+  /** getter for text - gets The text of the question.
    * @generated
    * @return value of the feature 
    */
-  public String getSentence() {
-    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_sentence == null)
-      jcasType.jcas.throwFeatMissing("sentence", "type.Question");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((Question_Type)jcasType).casFeatCode_sentence);}
+  public String getText() {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_text == null)
+      jcasType.jcas.throwFeatMissing("text", "type.Question");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((Question_Type)jcasType).casFeatCode_text);}
     
-  /** setter for sentence - sets The text of the question. 
+  /** setter for text - sets The text of the question. 
    * @generated
    * @param v value to set into the feature 
    */
-  public void setSentence(String v) {
-    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_sentence == null)
-      jcasType.jcas.throwFeatMissing("sentence", "type.Question");
-    jcasType.ll_cas.ll_setStringValue(addr, ((Question_Type)jcasType).casFeatCode_sentence, v);}    
+  public void setText(String v) {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_text == null)
+      jcasType.jcas.throwFeatMissing("text", "type.Question");
+    jcasType.ll_cas.ll_setStringValue(addr, ((Question_Type)jcasType).casFeatCode_text, v);}    
    
     
   //*--------------*

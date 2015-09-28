@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +24,18 @@ import org.apache.uima.util.FileUtils;
 import org.apache.uima.util.Progress;
 
 /**
- * This Collection Reader serves as a reader to parse your input. This is just template code, so you
- * need to implement actual code.
+ * Serves as a reader to parse input.
+ * 
+ * Reads in a single file (FILENAME - defaults to questions_and_passages.txt)
+ * and prepares a cas for each question in the file
+ *
+ * Each line of the input file is assumed to contain either one question or one passage 
+ * 
+ * Questions are assumed to be of the form
+ *  factoid_id QUESTION question_text
+ *  
+ * And passages are assumed to be of the form
+ *  factoid_id document_id correct/incorrect answer_text
  */
 public class QuestionPassageReader extends CollectionReader_ImplBase {
 	/**
@@ -59,6 +70,7 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 	
 	/**
 	 * @see org.apache.uima.collection.CollectionReader_ImplBase#initialize()
+	 * 
 	 */
 	@SuppressWarnings("deprecation")
 	public void initialize() throws ResourceInitializationException {
@@ -158,24 +170,35 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		srcDocInfo.setLastSegment(!this.hasNext());
 		srcDocInfo.addToIndexes();
 
-		annotateCASForTestElement(jcas,question,passages);
+		annotateTestElement(jcas); //TODO: Export this to a separate annotation engine
 	}
 	
 	/**
-	 * Add the initial test element annotation
-	 * of question and passages
-	 * Taking care of this now will help
-	 * reduce redundancy of implementation
+	 * Annotate the test element
+	 *  for a single question and its related passages
+	 *  
+	 *  Assumes the document text is of the form
+	 *  QUESTION\nPASSAGE1\nPASSAGE2\nPASSAGE3\n...
+	 *  
+	 *  Where QUESTION is of the form
+	 *  factoid_id QUESTION question_text
+	 *  
+	 *  And PASSAGEx is of the form
+	 *  factoid_id document_id correct/incorrect answer_text
 	 */
-	private void annotateCASForTestElement(JCas jcas, 
-			String question, List<String> passages) {
+	private void annotateTestElement(JCas jcas) {
+		//Extract the relevant spans
+		String text = jcas.getDocumentText();
+		String[] lines = text.split("\n");
+		String question = lines[0];
+		String[] passages = Arrays.copyOfRange(lines, 1, lines.length);
+		
+		//Extract basic question info
 		int index = question.length();
 		String qnum = question.split(WHITESPACE)[0];
-		type.Question te = new type.Question(jcas); // the test element
-		te.setBegin(0);
-		te.setEnd(index);
-		te.setId(qnum);
-		te.setComponentId(this.getClass().getName());
+		
+		////////////////////////
+		//Annotate the passages
 		FSList tePassages = new EmptyFSList(jcas);
 		for(String passage : passages)
 		{
@@ -193,6 +216,16 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 			tepass.setHead(tePassage);
 			tepass.setTail(tePassages);
 		}
+		
+		///////////////////////
+		//Annotate the question
+		type.Question te = new type.Question(jcas); // the test element
+		te.setBegin(0);
+		te.setEnd(index);
+		te.setId(qnum);
+		te.setText(question);
+		te.setComponentId(this.getClass().getName());
+		te.setPassages(tePassages);
 	}
 
 	@Override

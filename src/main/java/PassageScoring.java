@@ -1,25 +1,25 @@
 
 
-/* First created by JCasGen Mon Sep 28 10:14:21 EDT 2015 */
-package type;
+/* First created by JCasGen Mon Sep 28 11:34:54 EDT 2015 */
 
 import org.apache.uima.jcas.JCas; 
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
-import org.apache.uima.jcas.tcas.Annotation;
+import org.apache.uima.jcas.cas.FSList;
+import type.ComponentAnnotation;
 
 
-/** A parent annotation which expects individual annotation types to inherit from.
+/** Annotation holding the ranking scores for each of the passages associated with this Test Element.
  * Updated by JCasGen Mon Sep 28 11:35:14 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class ComponentAnnotation extends Annotation {
+public class PassageScoring extends ComponentAnnotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(ComponentAnnotation.class);
+  public final static int typeIndexID = JCasRegistry.register(PassageScoring.class);
   /** @generated
    * @ordered 
    */
@@ -33,14 +33,14 @@ public class ComponentAnnotation extends Annotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected ComponentAnnotation() {/* intentionally empty block */}
+  protected PassageScoring() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public ComponentAnnotation(int addr, TOP_Type type) {
+  public PassageScoring(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -48,7 +48,7 @@ public class ComponentAnnotation extends Annotation {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public ComponentAnnotation(JCas jcas) {
+  public PassageScoring(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -58,7 +58,7 @@ public class ComponentAnnotation extends Annotation {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public ComponentAnnotation(JCas jcas, int begin, int end) {
+  public PassageScoring(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -77,25 +77,25 @@ public class ComponentAnnotation extends Annotation {
  
     
   //*--------------*
-  //* Feature: componentId
+  //* Feature: scores
 
-  /** getter for componentId - gets An identifier that specifies which system produced this annotation.
+  /** getter for scores - gets The list of scores for each of the respective passages associated with this Test Element.
    * @generated
    * @return value of the feature 
    */
-  public String getComponentId() {
-    if (ComponentAnnotation_Type.featOkTst && ((ComponentAnnotation_Type)jcasType).casFeat_componentId == null)
-      jcasType.jcas.throwFeatMissing("componentId", "type.ComponentAnnotation");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((ComponentAnnotation_Type)jcasType).casFeatCode_componentId);}
+  public FSList getScores() {
+    if (PassageScoring_Type.featOkTst && ((PassageScoring_Type)jcasType).casFeat_scores == null)
+      jcasType.jcas.throwFeatMissing("scores", "PassageScoring");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((PassageScoring_Type)jcasType).casFeatCode_scores)));}
     
-  /** setter for componentId - sets An identifier that specifies which system produced this annotation. 
+  /** setter for scores - sets The list of scores for each of the respective passages associated with this Test Element. 
    * @generated
    * @param v value to set into the feature 
    */
-  public void setComponentId(String v) {
-    if (ComponentAnnotation_Type.featOkTst && ((ComponentAnnotation_Type)jcasType).casFeat_componentId == null)
-      jcasType.jcas.throwFeatMissing("componentId", "type.ComponentAnnotation");
-    jcasType.ll_cas.ll_setStringValue(addr, ((ComponentAnnotation_Type)jcasType).casFeatCode_componentId, v);}    
+  public void setScores(FSList v) {
+    if (PassageScoring_Type.featOkTst && ((PassageScoring_Type)jcasType).casFeat_scores == null)
+      jcasType.jcas.throwFeatMissing("scores", "PassageScoring");
+    jcasType.ll_cas.ll_setRefValue(addr, ((PassageScoring_Type)jcasType).casFeatCode_scores, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     
