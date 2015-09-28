@@ -13,9 +13,9 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Stores the information about a question.
- * Updated by JCasGen Mon Sep 28 12:13:47 EDT 2015
+ * Updated by JCasGen Mon Sep 28 13:54:26 EDT 2015
  * @generated */
-public class Question_Type extends ComponentAnnotation_Type {
+public class Question_Type extends Span_Type {
   /** @generated 
    * @return the generator for this type
    */
@@ -70,30 +70,6 @@ public class Question_Type extends ComponentAnnotation_Type {
   
  
   /** @generated */
-  final Feature casFeat_text;
-  /** @generated */
-  final int     casFeatCode_text;
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @return the feature value 
-   */ 
-  public String getText(int addr) {
-        if (featOkTst && casFeat_text == null)
-      jcas.throwFeatMissing("text", "type.Question");
-    return ll_cas.ll_getStringValue(addr, casFeatCode_text);
-  }
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @param v value to set 
-   */    
-  public void setText(int addr, String v) {
-        if (featOkTst && casFeat_text == null)
-      jcas.throwFeatMissing("text", "type.Question");
-    ll_cas.ll_setStringValue(addr, casFeatCode_text, v);}
-    
-  
- 
-  /** @generated */
   final Feature casFeat_passages;
   /** @generated */
   final int     casFeatCode_passages;
@@ -116,6 +92,30 @@ public class Question_Type extends ComponentAnnotation_Type {
     ll_cas.ll_setRefValue(addr, casFeatCode_passages, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_question;
+  /** @generated */
+  final int     casFeatCode_question;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getQuestion(int addr) {
+        if (featOkTst && casFeat_question == null)
+      jcas.throwFeatMissing("question", "type.Question");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_question);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setQuestion(int addr, int v) {
+        if (featOkTst && casFeat_question == null)
+      jcas.throwFeatMissing("question", "type.Question");
+    ll_cas.ll_setRefValue(addr, casFeatCode_question, v);}
+    
+  
 
 
 
@@ -133,12 +133,12 @@ public class Question_Type extends ComponentAnnotation_Type {
     casFeatCode_id  = (null == casFeat_id) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_id).getCode();
 
  
-    casFeat_text = jcas.getRequiredFeatureDE(casType, "text", "uima.cas.String", featOkTst);
-    casFeatCode_text  = (null == casFeat_text) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_text).getCode();
-
- 
     casFeat_passages = jcas.getRequiredFeatureDE(casType, "passages", "uima.cas.FSList", featOkTst);
     casFeatCode_passages  = (null == casFeat_passages) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_passages).getCode();
+
+ 
+    casFeat_question = jcas.getRequiredFeatureDE(casType, "question", "type.Span", featOkTst);
+    casFeatCode_question  = (null == casFeat_question) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_question).getCode();
 
   }
 }

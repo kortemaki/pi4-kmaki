@@ -21,6 +21,8 @@ import org.apache.uima.jcas.cas.FSArray;
 import org.apache.uima.jcas.cas.FSList;
 import org.apache.uima.jcas.cas.NonEmptyFSList;
 
+import type.Span;
+
 /**
  * A simple segment annotator for PI4.
  * 
@@ -72,18 +74,35 @@ public class TestElementAnnotator extends CasAnnotator_ImplBase
 		String question = lines[0];
 		String[] passages = Arrays.copyOfRange(lines, 1, lines.length);
 
-		//Extract basic question info
-		int index = question.length();
+		////////////////////////////////
+		//Annotate test element metadata		
 		String qnum = question.split(WHITESPACE)[0];
+		type.Question te = new type.Question(jcas); // the test element
+		te.setBegin(0);
+		te.setEnd(text.length());
+		te.setId(qnum);
+		te.setText("QUESTION " + qnum + " + PASSAGES");
+		te.setComponentId(this.getClass().getName());
 
-		////////////////////////
-		//Annotate the passages
+		////////////////////////////
+		//Annotate the question span
+		int index = question.length();
+		Span q = new Span(jcas);
+		q.setBegin(0);
+		q.setEnd(index);
+		q.setText(question);
+		q.setComponentId(this.getClass().getName());
+		te.setQuestion(q);
+		
+		////////////////////////////
+		//Annotate the passage spans
 		FSList tePassages = new EmptyFSList(jcas);
 		for(String passage : passages)
 		{
 			type.Passage tePassage = new type.Passage(jcas); 
 			tePassage.setBegin(index);
-			tePassage.setEnd(passage.length());
+			index = index + passage.length();
+			tePassage.setEnd(index);
 			String sourceDocID = passage.split(WHITESPACE)[1];
 			String label = passage.split(WHITESPACE)[2];
 			int textStart = qnum.length() + sourceDocID.length() + label.length() + 1; 
@@ -94,16 +113,8 @@ public class TestElementAnnotator extends CasAnnotator_ImplBase
 			NonEmptyFSList tepass = new NonEmptyFSList(jcas);
 			tepass.setHead(tePassage);
 			tepass.setTail(tePassages);
+			tePassages = tepass;
 		}
-
-		///////////////////////
-		//Annotate the question
-		type.Question te = new type.Question(jcas); // the test element
-		te.setBegin(0);
-		te.setEnd(index);
-		te.setId(qnum);
-		te.setText(question);
-		te.setComponentId(this.getClass().getName());
 		te.setPassages(tePassages);
 	}
 }

@@ -21,7 +21,7 @@ You need to implement the types requried for your ranking model.</description>
     <typeDescription>
       <name>type.Question</name>
       <description>Stores the information about a question.</description>
-      <supertypeName>type.ComponentAnnotation</supertypeName>
+      <supertypeName>type.Span</supertypeName>
       <features>
         <featureDescription>
           <name>id</name>
@@ -29,28 +29,23 @@ You need to implement the types requried for your ranking model.</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
         <featureDescription>
-          <name>text</name>
-          <description>The text of the question.</description>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
-        </featureDescription>
-      <featureDescription>
           <name>passages</name>
           <description>Passages associated with this question.</description>
           <rangeTypeName>uima.cas.FSList</rangeTypeName>
           <elementType>type.Passage</elementType>
+        </featureDescription>
+      <featureDescription>
+          <name>question</name>
+          <description/>
+          <rangeTypeName>type.Span</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>
       <name>type.Passage</name>
       <description>Stores the information of the passage.</description>
-      <supertypeName>type.ScoredComponentAnnotation</supertypeName>
+      <supertypeName>type.Span</supertypeName>
       <features>
-        <featureDescription>
-          <name>text</name>
-          <description>The passage text extracted from the source document.</description>
-          <rangeTypeName>uima.cas.String</rangeTypeName>
-        </featureDescription>
         <featureDescription>
           <name>label</name>
           <description>This stores a gold standard label of this answer.  'True' means that it answers the question; otherwise, it is does not.</description>

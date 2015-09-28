@@ -11,10 +11,10 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** Stores the information about a question.
- * Updated by JCasGen Mon Sep 28 12:13:47 EDT 2015
+ * Updated by JCasGen Mon Sep 28 13:54:26 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class Question extends ComponentAnnotation {
+public class Question extends Span {
   /** @generated
    * @ordered 
    */
@@ -99,28 +99,6 @@ public class Question extends ComponentAnnotation {
    
     
   //*--------------*
-  //* Feature: text
-
-  /** getter for text - gets The text of the question.
-   * @generated
-   * @return value of the feature 
-   */
-  public String getText() {
-    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_text == null)
-      jcasType.jcas.throwFeatMissing("text", "type.Question");
-    return jcasType.ll_cas.ll_getStringValue(addr, ((Question_Type)jcasType).casFeatCode_text);}
-    
-  /** setter for text - sets The text of the question. 
-   * @generated
-   * @param v value to set into the feature 
-   */
-  public void setText(String v) {
-    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_text == null)
-      jcasType.jcas.throwFeatMissing("text", "type.Question");
-    jcasType.ll_cas.ll_setStringValue(addr, ((Question_Type)jcasType).casFeatCode_text, v);}    
-   
-    
-  //*--------------*
   //* Feature: passages
 
   /** getter for passages - gets Passages associated with this question.
@@ -140,6 +118,28 @@ public class Question extends ComponentAnnotation {
     if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_passages == null)
       jcasType.jcas.throwFeatMissing("passages", "type.Question");
     jcasType.ll_cas.ll_setRefValue(addr, ((Question_Type)jcasType).casFeatCode_passages, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: question
+
+  /** getter for question - gets 
+   * @generated
+   * @return value of the feature 
+   */
+  public Span getQuestion() {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_question == null)
+      jcasType.jcas.throwFeatMissing("question", "type.Question");
+    return (Span)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Question_Type)jcasType).casFeatCode_question)));}
+    
+  /** setter for question - sets  
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setQuestion(Span v) {
+    if (Question_Type.featOkTst && ((Question_Type)jcasType).casFeat_question == null)
+      jcasType.jcas.throwFeatMissing("question", "type.Question");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Question_Type)jcasType).casFeatCode_question, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

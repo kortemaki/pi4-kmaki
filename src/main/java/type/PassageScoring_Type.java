@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Annotation holding the ranking scores for each of the passages associated with this Test Element.
- * Updated by JCasGen Mon Sep 28 12:13:47 EDT 2015
+ * Updated by JCasGen Mon Sep 28 13:54:27 EDT 2015
  * @generated */
 public class PassageScoring_Type extends ComponentAnnotation_Type {
   /** @generated 

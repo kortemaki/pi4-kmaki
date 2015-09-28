@@ -13,9 +13,9 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Stores the information of the passage.
- * Updated by JCasGen Mon Sep 28 12:13:47 EDT 2015
+ * Updated by JCasGen Mon Sep 28 13:54:26 EDT 2015
  * @generated */
-public class Passage_Type extends ScoredComponentAnnotation_Type {
+public class Passage_Type extends Span_Type {
   /** @generated 
    * @return the generator for this type
    */
@@ -44,30 +44,6 @@ public class Passage_Type extends ScoredComponentAnnotation_Type {
      @modifiable */
   @SuppressWarnings ("hiding")
   public final static boolean featOkTst = JCasRegistry.getFeatOkTst("type.Passage");
- 
-  /** @generated */
-  final Feature casFeat_text;
-  /** @generated */
-  final int     casFeatCode_text;
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @return the feature value 
-   */ 
-  public String getText(int addr) {
-        if (featOkTst && casFeat_text == null)
-      jcas.throwFeatMissing("text", "type.Passage");
-    return ll_cas.ll_getStringValue(addr, casFeatCode_text);
-  }
-  /** @generated
-   * @param addr low level Feature Structure reference
-   * @param v value to set 
-   */    
-  public void setText(int addr, String v) {
-        if (featOkTst && casFeat_text == null)
-      jcas.throwFeatMissing("text", "type.Passage");
-    ll_cas.ll_setStringValue(addr, casFeatCode_text, v);}
-    
-  
  
   /** @generated */
   final Feature casFeat_label;
@@ -127,10 +103,6 @@ public class Passage_Type extends ScoredComponentAnnotation_Type {
   public Passage_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
-
- 
-    casFeat_text = jcas.getRequiredFeatureDE(casType, "text", "uima.cas.String", featOkTst);
-    casFeatCode_text  = (null == casFeat_text) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_text).getCode();
 
  
     casFeat_label = jcas.getRequiredFeatureDE(casType, "label", "uima.cas.Boolean", featOkTst);
