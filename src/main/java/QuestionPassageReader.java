@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import org.apache.uima.UimaContext;
 import org.apache.uima.cas.CAS;
 import org.apache.uima.cas.CASException;
 import org.apache.uima.collection.CollectionException;
@@ -126,7 +127,7 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 	}	
 	
 	private boolean isQuestion(String line) {
-		return line.split(WHITESPACE)[1]==QUESTION_MARKER;
+		return line.split(WHITESPACE)[1].equals(QUESTION_MARKER);
 	}
 
 	private static String getQnum(String line) {
@@ -174,7 +175,6 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		srcDocInfo.setDocumentSize(text.length());
 		srcDocInfo.setLastSegment(!this.hasNext());
 		srcDocInfo.addToIndexes();
-
 	}
 
 	@Override

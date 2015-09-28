@@ -36,7 +36,7 @@ You need to implement the types requried for your ranking model.</description>
         </featureDescription>
       <featureDescription>
           <name>question</name>
-          <description/>
+          <description>The Span corresponding to the text of the question annotated by this annotation.</description>
           <rangeTypeName>type.Span</rangeTypeName>
         </featureDescription>
       </features>
@@ -56,12 +56,17 @@ You need to implement the types requried for your ranking model.</description>
           <description>This specifies the source document id to which the passage belongs to.</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
+      <featureDescription>
+          <name>passage</name>
+          <description>The text of the passage annotated by this annotation.</description>
+          <rangeTypeName>type.Span</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
     <typeDescription>
-      <name>type.ScoredComponentAnnotation</name>
-      <description>A component annotation with a score</description>
-      <supertypeName>type.ComponentAnnotation</supertypeName>
+      <name>type.ScoredSpan</name>
+      <description>A span with a score</description>
+      <supertypeName>type.Span</supertypeName>
       <features>
         <featureDescription>
           <name>score</name>
@@ -165,7 +170,7 @@ You need to implement the types requried for your ranking model.</description>
           <name>scores</name>
           <description>The list of scores for each of the respective passages associated with this Test Element.</description>
           <rangeTypeName>uima.cas.FSList</rangeTypeName>
-          <elementType>type.ScoredComponentAnnotation</elementType>
+          <elementType>type.ScoredSpan</elementType>
         </featureDescription>
       </features>
     </typeDescription>

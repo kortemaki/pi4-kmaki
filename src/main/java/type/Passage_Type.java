@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Stores the information of the passage.
- * Updated by JCasGen Mon Sep 28 13:54:26 EDT 2015
+ * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
  * @generated */
 public class Passage_Type extends Span_Type {
   /** @generated 
@@ -92,6 +92,30 @@ public class Passage_Type extends Span_Type {
     ll_cas.ll_setStringValue(addr, casFeatCode_sourceDocId, v);}
     
   
+ 
+  /** @generated */
+  final Feature casFeat_passage;
+  /** @generated */
+  final int     casFeatCode_passage;
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @return the feature value 
+   */ 
+  public int getPassage(int addr) {
+        if (featOkTst && casFeat_passage == null)
+      jcas.throwFeatMissing("passage", "type.Passage");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_passage);
+  }
+  /** @generated
+   * @param addr low level Feature Structure reference
+   * @param v value to set 
+   */    
+  public void setPassage(int addr, int v) {
+        if (featOkTst && casFeat_passage == null)
+      jcas.throwFeatMissing("passage", "type.Passage");
+    ll_cas.ll_setRefValue(addr, casFeatCode_passage, v);}
+    
+  
 
 
 
@@ -111,6 +135,10 @@ public class Passage_Type extends Span_Type {
  
     casFeat_sourceDocId = jcas.getRequiredFeatureDE(casType, "sourceDocId", "uima.cas.String", featOkTst);
     casFeatCode_sourceDocId  = (null == casFeat_sourceDocId) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_sourceDocId).getCode();
+
+ 
+    casFeat_passage = jcas.getRequiredFeatureDE(casType, "passage", "type.Span", featOkTst);
+    casFeatCode_passage  = (null == casFeat_passage) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_passage).getCode();
 
   }
 }

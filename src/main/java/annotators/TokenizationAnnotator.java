@@ -76,15 +76,15 @@ public class TokenizationAnnotator extends CasAnnotator_ImplBase {
 			{
 				Passage passage = (Passage) ((NonEmptyFSList) passages).getHead();
 				NonEmptyFSList next = new NonEmptyFSList(jcas);
-				next.setHead(this.tokenize(passage,jcas));
+				next.setHead(this.tokenize(passage.getPassage(),jcas));
 				next.setTail(passtoks);
 				passtoks = next;
+				passages = ((NonEmptyFSList) passages).getTail();
 			}
 			annot.setPassageTokens(passtoks);
 			annot.setBegin(te.getBegin());
 			annot.setEnd(te.getEnd());
 			annot.setComponentId(this.getClass().getName());
-			
 			annot.addToIndexes();
 		}
 	}
@@ -103,19 +103,20 @@ public class TokenizationAnnotator extends CasAnnotator_ImplBase {
 		int end = span.getEnd();
 		
 		// Tokenize the text
-		int tokstart = begin;
-		int tokend = begin;
+		int tokstart = 0;
+		int tokend = 0;
 		List<Span> toks = new LinkedList<Span>();
 		StringTokenizer st = new StringTokenizer(text);
 		while (st.hasMoreTokens()) {
 			String thisTok = st.nextToken();
 			tokstart = text.indexOf(thisTok, tokend);
-			tokend = begin + thisTok.length();
+			tokend = tokstart + thisTok.length();
 			Span tok = new Span(jcas);
-			tok.setBegin(tokstart);
+			tok.setBegin(tokstart+begin);
 			tok.setText(thisTok);
-			tok.setEnd(tokend);
+			tok.setEnd(tokend+begin);
 			tok.setComponentId(this.getClass().getName());
+			tok.addToIndexes();
 			toks.add(tok);
 		}
 		
@@ -132,7 +133,7 @@ public class TokenizationAnnotator extends CasAnnotator_ImplBase {
 		output.setText(text);
 		output.setEnd(end);
 		output.setComponentId(this.getClass().getName());
-		
+		output.addToIndexes();
 		return output;
 	}
 	

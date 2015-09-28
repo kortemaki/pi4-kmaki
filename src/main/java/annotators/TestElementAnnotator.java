@@ -45,6 +45,9 @@ import type.Span;
 public class TestElementAnnotator extends CasAnnotator_ImplBase 
 {
 	private static final String WHITESPACE = "\\s";
+	
+	private static final String QUESTION_MARKER = "QUESTION";
+	
 
 	/**
 	 * Annotate the test element
@@ -72,6 +75,7 @@ public class TestElementAnnotator extends CasAnnotator_ImplBase
 		String text = jcas.getDocumentText();
 		String[] lines = text.split("\n");
 		String question = lines[0];
+		
 		String[] passages = Arrays.copyOfRange(lines, 1, lines.length);
 
 		////////////////////////////////
@@ -88,33 +92,47 @@ public class TestElementAnnotator extends CasAnnotator_ImplBase
 		//Annotate the question span
 		int index = question.length();
 		Span q = new Span(jcas);
-		q.setBegin(0);
+		q.setBegin(qnum.length() + QUESTION_MARKER.length() + 2);
 		q.setEnd(index);
-		q.setText(question);
+		q.setText(question.substring(q.getBegin()));
 		q.setComponentId(this.getClass().getName());
+		q.addToIndexes();
 		te.setQuestion(q);
 		
-		////////////////////////////
-		//Annotate the passage spans
+		///////////////////////
+		//Annotate the passages
 		FSList tePassages = new EmptyFSList(jcas);
 		for(String passage : passages)
 		{
+			//Annotate the raw passage string
 			type.Passage tePassage = new type.Passage(jcas); 
-			tePassage.setBegin(index);
-			index = index + passage.length();
+			tePassage.setBegin(index + 1);
+			index = index + 1 + passage.length();
 			tePassage.setEnd(index);
+			tePassage.setText(passage);
+			
+			//Identify and annotate the passage span
 			String sourceDocID = passage.split(WHITESPACE)[1];
 			String label = passage.split(WHITESPACE)[2];
-			int textStart = qnum.length() + sourceDocID.length() + label.length() + 1; 
-			tePassage.setText(passage.substring(textStart));
+			int textStart = qnum.length() + sourceDocID.length() + label.length() + 3; 
+			Span passageSpan = new Span(jcas);
+			passageSpan.setText(passage.substring(textStart));
+			passageSpan.setBegin(tePassage.getBegin() + textStart);
+			passageSpan.setEnd(passageSpan.getBegin() + passageSpan.getText().length());
+			passageSpan.setComponentId(this.getClass().getName());
+			passageSpan.addToIndexes();
+			tePassage.setPassage(passageSpan);
 			tePassage.setSourceDocId(sourceDocID);
 			tePassage.setLabel(label.equals("1"));
 			tePassage.setComponentId(this.getClass().getName());
+			tePassage.addToIndexes();
 			NonEmptyFSList tepass = new NonEmptyFSList(jcas);
 			tepass.setHead(tePassage);
 			tepass.setTail(tePassages);
 			tePassages = tepass;
 		}
 		te.setPassages(tePassages);
+		
+		te.addToIndexes();
 	}
 }

@@ -9,6 +9,9 @@
     <delegateAnalysisEngine key="TokenizationAnnotator">
       <import name="descriptors.annotators.TokenizationAnnotator"/>
     </delegateAnalysisEngine>
+    <delegateAnalysisEngine key="NgramAnnotator">
+      <import name="descriptors.annotators.NgramAnnotator"/>
+    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>aaeDescriptor</name>
@@ -17,12 +20,13 @@
 Annotates questions and associated passages for their underlying spans.</description>
     <version>1.0</version>
     <vendor/>
-    <configurationParameters/>
+    <configurationParameters searchStrategy="language_fallback"/>
     <configurationParameterSettings/>
     <flowConstraints>
       <fixedFlow>
         <node>TestElementAnnotator</node>
-        <node>TokenizationAnnotator</node>
+      <node>TokenizationAnnotator</node>
+      <node>NgramAnnotator</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>

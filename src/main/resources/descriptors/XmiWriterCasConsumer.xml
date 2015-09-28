@@ -21,7 +21,7 @@
    -->
 <casConsumerDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <implementationName>org.apache.uima.examples.xmi.XmiWriterCasConsumer</implementationName>
+  <implementationName>DebugCasConsumer</implementationName>
   <processingResourceMetaData>
     <name>Xmi Writer CAS Consumer</name>
     <description>Writes the CAS to XMI format</description>

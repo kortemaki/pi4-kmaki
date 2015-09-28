@@ -10,7 +10,7 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** Stores the information of the passage.
- * Updated by JCasGen Mon Sep 28 13:54:26 EDT 2015
+ * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class Passage extends Span {
@@ -117,6 +117,28 @@ public class Passage extends Span {
     if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_sourceDocId == null)
       jcasType.jcas.throwFeatMissing("sourceDocId", "type.Passage");
     jcasType.ll_cas.ll_setStringValue(addr, ((Passage_Type)jcasType).casFeatCode_sourceDocId, v);}    
+   
+    
+  //*--------------*
+  //* Feature: passage
+
+  /** getter for passage - gets The text of the passage annotated by this annotation.
+   * @generated
+   * @return value of the feature 
+   */
+  public Span getPassage() {
+    if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_passage == null)
+      jcasType.jcas.throwFeatMissing("passage", "type.Passage");
+    return (Span)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Passage_Type)jcasType).casFeatCode_passage)));}
+    
+  /** setter for passage - sets The text of the passage annotated by this annotation. 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setPassage(Span v) {
+    if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_passage == null)
+      jcasType.jcas.throwFeatMissing("passage", "type.Passage");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Passage_Type)jcasType).casFeatCode_passage, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

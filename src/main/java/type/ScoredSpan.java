@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Mon Sep 28 10:15:23 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 15:24:45 EDT 2015 */
 package type;
 
 import org.apache.uima.jcas.JCas; 
@@ -9,16 +9,16 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 
-/** A component annotation with a score
- * Updated by JCasGen Mon Sep 28 13:54:26 EDT 2015
+/** A span with a score
+ * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class ScoredComponentAnnotation extends ComponentAnnotation {
+public class ScoredSpan extends Span {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(ScoredComponentAnnotation.class);
+  public final static int typeIndexID = JCasRegistry.register(ScoredSpan.class);
   /** @generated
    * @ordered 
    */
@@ -32,14 +32,14 @@ public class ScoredComponentAnnotation extends ComponentAnnotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected ScoredComponentAnnotation() {/* intentionally empty block */}
+  protected ScoredSpan() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public ScoredComponentAnnotation(int addr, TOP_Type type) {
+  public ScoredSpan(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -47,7 +47,7 @@ public class ScoredComponentAnnotation extends ComponentAnnotation {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public ScoredComponentAnnotation(JCas jcas) {
+  public ScoredSpan(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -57,7 +57,7 @@ public class ScoredComponentAnnotation extends ComponentAnnotation {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public ScoredComponentAnnotation(JCas jcas, int begin, int end) {
+  public ScoredSpan(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -83,18 +83,18 @@ public class ScoredComponentAnnotation extends ComponentAnnotation {
    * @return value of the feature 
    */
   public double getScore() {
-    if (ScoredComponentAnnotation_Type.featOkTst && ((ScoredComponentAnnotation_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "type.ScoredComponentAnnotation");
-    return jcasType.ll_cas.ll_getDoubleValue(addr, ((ScoredComponentAnnotation_Type)jcasType).casFeatCode_score);}
+    if (ScoredSpan_Type.featOkTst && ((ScoredSpan_Type)jcasType).casFeat_score == null)
+      jcasType.jcas.throwFeatMissing("score", "type.ScoredSpan");
+    return jcasType.ll_cas.ll_getDoubleValue(addr, ((ScoredSpan_Type)jcasType).casFeatCode_score);}
     
   /** setter for score - sets The score for this annotation 
    * @generated
    * @param v value to set into the feature 
    */
   public void setScore(double v) {
-    if (ScoredComponentAnnotation_Type.featOkTst && ((ScoredComponentAnnotation_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "type.ScoredComponentAnnotation");
-    jcasType.ll_cas.ll_setDoubleValue(addr, ((ScoredComponentAnnotation_Type)jcasType).casFeatCode_score, v);}    
+    if (ScoredSpan_Type.featOkTst && ((ScoredSpan_Type)jcasType).casFeat_score == null)
+      jcasType.jcas.throwFeatMissing("score", "type.ScoredSpan");
+    jcasType.ll_cas.ll_setDoubleValue(addr, ((ScoredSpan_Type)jcasType).casFeatCode_score, v);}    
   }
 
     
