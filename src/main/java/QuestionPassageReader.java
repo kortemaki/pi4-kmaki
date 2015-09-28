@@ -42,10 +42,13 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 	 */
 	public static final String PARAM_LANGUAGE = "Language";
 
-	private static final String filename = "questions_and_passages.txt";
+	private static final String FILENAME = "questions_and_passages.txt";
 
-	private Map<Integer,String> questions;
-	private Map<Integer,List<String>> passages;
+	private static final String WHITESPACE = "\\s";
+	
+	private static final String QUESTION_MARKER = "QUESTION";
+	
+	private Map<Integer,Entry> questions;
 	private Iterator<Integer> QuestionIterator;
 	private String mEncoding;
 	private String mLanguage;
@@ -67,46 +70,43 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		}
 
 		// open input stream to file
-		File file = new File(filename);
+		File file = new File(FILENAME);
 		String text = "";
 		try {
 			text = FileUtils.file2String(file, mEncoding);
 		} catch (IOException e) {
-			throw new ResourceInitializationException("Error while opening file " + filename, null);
+			throw new ResourceInitializationException("Error while opening file " + FILENAME, null);
 		}
 
 		//Save some metadata about the file
 		try {
 			this.URI = file.getAbsoluteFile().toURL().toString();
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			this.URI = file.getAbsolutePath();
 		}
 
 		//Get the questions and passages and index based on question number
-		this.questions = new TreeMap<Integer,String>();
-		this.passages = new TreeMap<Integer,List<String>>();
+		this.questions = new TreeMap<Integer,Entry>();
 
 		for(String line : text.split("\n"))
 		{
 			int qnum = getQnum(line);
+			if(!questions.containsKey(qnum))
+				questions.put(qnum, new Entry());
 			//if question
 			if(isQuestion(line))
 			{
-				questions.put(qnum, line);
+				questions.get(qnum).setQuestion(line);
 			}
 			else
 			{
-				if(!passages.containsKey(qnum))
-					passages.put(qnum, new ArrayList<String>());
-				passages.get(qnum).add(line);
+				questions.get(qnum).addPassage(line);
 			}
 		}
 	}	
 	
 	private boolean isQuestion(String line) {
-		// TODO Auto-generated method stub
-		return false;
+		return line.split(WHITESPACE)[1]==QUESTION_MARKER;
 	}
 
 	private static Integer getQnum(String line) {
@@ -125,8 +125,8 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		Integer qnum = this.QuestionIterator.next();
 		
 		//Identify relevant texts
-		String question = this.questions.get(qnum);
-		List<String> passages = this.passages.get(qnum);
+		String question = this.questions.get(qnum).getQuestion();
+		List<String> passages = this.questions.get(qnum).getPassages();
 
 		//Populate the CAS
 		JCas jcas;
@@ -137,7 +137,7 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		}
 
 		// put document in CAS
-				String text = question;
+		String text = question + "\n" + String.join("\n",passages);
 		jcas.setDocumentText(text);
 		
 		// set language if it was explicitly specified as a configuration parameter
@@ -157,6 +157,9 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		srcDocInfo.setLastSegment(!this.hasNext());
 		srcDocInfo.addToIndexes();
 
+		int index = question.length();
+		new TestElementAnnotation
+		
 	}
 
 	@Override
@@ -173,4 +176,39 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		return this.QuestionIterator.hasNext();
 	}
 
+}
+
+/**
+ * Auxiliary class to package strings associated with a given question entry 
+ * 
+ * @author maki
+ */
+class Entry
+{
+	private String question;
+	private List<String> passages;
+	Entry()
+	{ 
+		passages = new ArrayList<String>(); 
+	}
+	
+	void setQuestion(String q)
+	{
+		this.question = q;
+	}
+	
+	void addPassage(String p)
+	{
+		this.passages.add(p);
+	}
+	
+	String getQuestion()
+	{
+		return this.question;
+	}
+	
+	List<String> getPassages()
+	{
+		return this.passages;
+	}
 }

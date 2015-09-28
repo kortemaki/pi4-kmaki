@@ -16,12 +16,7 @@ You need to implement the types requried for your ranking model.</description>
           <description>An identifier that specifies which system produced this annotation.</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
-        <featureDescription>
-          <name>score</name>
-          <description>The ranking score acquired for the answer and the confidence score acquired for the question.</description>
-          <rangeTypeName>uima.cas.Double</rangeTypeName>
-        </featureDescription>
-      </features>
+        </features>
     </typeDescription>
     <typeDescription>
       <name>type.InputDocument</name>
@@ -68,7 +63,7 @@ You need to implement the types requried for your ranking model.</description>
     <typeDescription>
       <name>type.Passage</name>
       <description>Stores the information of the passage.</description>
-      <supertypeName>type.ComponentAnnotation</supertypeName>
+      <supertypeName>type.ScoredComponentAnnotation</supertypeName>
       <features>
         <featureDescription>
           <name>text</name>
@@ -85,12 +80,19 @@ You need to implement the types requried for your ranking model.</description>
           <description>This specifies the source document id to which the passage belongs to.</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
         </featureDescription>
-      <featureDescription>
-          <name>question</name>
-          <description>A question associated with this passage.</description>
-          <rangeTypeName>type.Question</rangeTypeName>
+      </features>
+    </typeDescription>
+    <typeDescription>
+      <name>type.ScoredComponentAnnotation</name>
+      <description>A component annotation with a score</description>
+      <supertypeName>type.ComponentAnnotation</supertypeName>
+      <features>
+        <featureDescription>
+          <name>score</name>
+          <description>The score for this annotation</description>
+          <rangeTypeName>uima.cas.Double</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>
-    </types>
+  </types>
 </typeSystemDescription>
