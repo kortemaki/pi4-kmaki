@@ -13,7 +13,7 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Annotates ngrams for the relevant parts of a test element.
- * Updated by JCasGen Mon Sep 28 11:35:14 EDT 2015
+ * Updated by JCasGen Mon Sep 28 12:13:47 EDT 2015
  * @generated */
 public class NgramAnnotation_Type extends ComponentAnnotation_Type {
   /** @generated 

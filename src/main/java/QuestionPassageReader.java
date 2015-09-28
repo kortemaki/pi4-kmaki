@@ -1,3 +1,4 @@
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -170,62 +171,6 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		srcDocInfo.setLastSegment(!this.hasNext());
 		srcDocInfo.addToIndexes();
 
-		annotateTestElement(jcas); //TODO: Export this to a separate annotation engine
-	}
-	
-	/**
-	 * Annotate the test element
-	 *  for a single question and its related passages
-	 *  
-	 *  Assumes the document text is of the form
-	 *  QUESTION\nPASSAGE1\nPASSAGE2\nPASSAGE3\n...
-	 *  
-	 *  Where QUESTION is of the form
-	 *  factoid_id QUESTION question_text
-	 *  
-	 *  And PASSAGEx is of the form
-	 *  factoid_id document_id correct/incorrect answer_text
-	 */
-	private void annotateTestElement(JCas jcas) {
-		//Extract the relevant spans
-		String text = jcas.getDocumentText();
-		String[] lines = text.split("\n");
-		String question = lines[0];
-		String[] passages = Arrays.copyOfRange(lines, 1, lines.length);
-		
-		//Extract basic question info
-		int index = question.length();
-		String qnum = question.split(WHITESPACE)[0];
-		
-		////////////////////////
-		//Annotate the passages
-		FSList tePassages = new EmptyFSList(jcas);
-		for(String passage : passages)
-		{
-			type.Passage tePassage = new type.Passage(jcas); 
-			tePassage.setBegin(index);
-			tePassage.setEnd(passage.length());
-			String sourceDocID = passage.split(WHITESPACE)[1];
-			String label = passage.split(WHITESPACE)[2];
-			int textStart = qnum.length() + sourceDocID.length() + label.length() + 1; 
-			tePassage.setText(passage.substring(textStart));
-			tePassage.setSourceDocId(sourceDocID);
-			tePassage.setLabel(label.equals("1"));
-			tePassage.setComponentId(this.getClass().getName());
-			NonEmptyFSList tepass = new NonEmptyFSList(jcas);
-			tepass.setHead(tePassage);
-			tepass.setTail(tePassages);
-		}
-		
-		///////////////////////
-		//Annotate the question
-		type.Question te = new type.Question(jcas); // the test element
-		te.setBegin(0);
-		te.setEnd(index);
-		te.setId(qnum);
-		te.setText(question);
-		te.setComponentId(this.getClass().getName());
-		te.setPassages(tePassages);
 	}
 
 	@Override

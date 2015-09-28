@@ -1,17 +1,17 @@
 
 
-/* First created by JCasGen Mon Sep 28 11:34:54 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 12:13:36 EDT 2015 */
+package type;
 
 import org.apache.uima.jcas.JCas; 
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
 import org.apache.uima.jcas.cas.FSList;
-import type.ComponentAnnotation;
 
 
 /** Annotation holding the ranking scores for each of the passages associated with this Test Element.
- * Updated by JCasGen Mon Sep 28 11:35:14 EDT 2015
+ * Updated by JCasGen Mon Sep 28 12:13:47 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class PassageScoring extends ComponentAnnotation {
@@ -85,7 +85,7 @@ public class PassageScoring extends ComponentAnnotation {
    */
   public FSList getScores() {
     if (PassageScoring_Type.featOkTst && ((PassageScoring_Type)jcasType).casFeat_scores == null)
-      jcasType.jcas.throwFeatMissing("scores", "PassageScoring");
+      jcasType.jcas.throwFeatMissing("scores", "type.PassageScoring");
     return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((PassageScoring_Type)jcasType).casFeatCode_scores)));}
     
   /** setter for scores - sets The list of scores for each of the respective passages associated with this Test Element. 
@@ -94,7 +94,7 @@ public class PassageScoring extends ComponentAnnotation {
    */
   public void setScores(FSList v) {
     if (PassageScoring_Type.featOkTst && ((PassageScoring_Type)jcasType).casFeat_scores == null)
-      jcasType.jcas.throwFeatMissing("scores", "PassageScoring");
+      jcasType.jcas.throwFeatMissing("scores", "type.PassageScoring");
     jcasType.ll_cas.ll_setRefValue(addr, ((PassageScoring_Type)jcasType).casFeatCode_scores, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 

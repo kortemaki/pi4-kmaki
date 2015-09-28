@@ -162,7 +162,7 @@ You need to implement the types requried for your ranking model.</description>
       </features>
     </typeDescription>
     <typeDescription>
-      <name>PassageScoring</name>
+      <name>type.PassageScoring</name>
       <description>Annotation holding the ranking scores for each of the passages associated with this Test Element.</description>
       <supertypeName>type.ComponentAnnotation</supertypeName>
       <features>

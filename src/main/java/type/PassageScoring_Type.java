@@ -1,5 +1,6 @@
 
-/* First created by JCasGen Mon Sep 28 11:34:54 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 12:13:36 EDT 2015 */
+package type;
 
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JCasRegistry;
@@ -10,10 +11,9 @@ import org.apache.uima.cas.impl.TypeImpl;
 import org.apache.uima.cas.Type;
 import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
-import type.ComponentAnnotation_Type;
 
 /** Annotation holding the ranking scores for each of the passages associated with this Test Element.
- * Updated by JCasGen Mon Sep 28 11:35:14 EDT 2015
+ * Updated by JCasGen Mon Sep 28 12:13:47 EDT 2015
  * @generated */
 public class PassageScoring_Type extends ComponentAnnotation_Type {
   /** @generated 
@@ -43,7 +43,7 @@ public class PassageScoring_Type extends ComponentAnnotation_Type {
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("PassageScoring");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("type.PassageScoring");
  
   /** @generated */
   final Feature casFeat_scores;
@@ -55,7 +55,7 @@ public class PassageScoring_Type extends ComponentAnnotation_Type {
    */ 
   public int getScores(int addr) {
         if (featOkTst && casFeat_scores == null)
-      jcas.throwFeatMissing("scores", "PassageScoring");
+      jcas.throwFeatMissing("scores", "type.PassageScoring");
     return ll_cas.ll_getRefValue(addr, casFeatCode_scores);
   }
   /** @generated
@@ -64,7 +64,7 @@ public class PassageScoring_Type extends ComponentAnnotation_Type {
    */    
   public void setScores(int addr, int v) {
         if (featOkTst && casFeat_scores == null)
-      jcas.throwFeatMissing("scores", "PassageScoring");
+      jcas.throwFeatMissing("scores", "type.PassageScoring");
     ll_cas.ll_setRefValue(addr, casFeatCode_scores, v);}
     
   
