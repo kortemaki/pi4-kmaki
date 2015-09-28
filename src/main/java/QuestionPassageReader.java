@@ -64,7 +64,7 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 	private static final String QUESTION_MARKER = "QUESTION";
 	
 	private Map<String,Entry> questions;
-	private Iterator<Integer> QuestionIterator;
+	private Iterator<String> questionIterator;
 	private String mEncoding;
 	private String mLanguage;
 	private String URI;
@@ -86,12 +86,14 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		}
 
 		// open input stream to file
-		File file = new File(FILENAME);
+		File file = new File(directory, FILENAME);
 		String text = "";
 		try {
 			text = FileUtils.file2String(file, mEncoding);
 		} catch (IOException e) {
-			throw new ResourceInitializationException("Error while opening file " + FILENAME, null);
+			Object[] args = new Object[1];
+			args[0] = FILENAME;
+			throw new ResourceInitializationException(ResourceInitializationException.COULD_NOT_ACCESS_DATA, args);
 		}
 
 		//Save some metadata about the file
@@ -119,6 +121,8 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 				questions.get(qnum).addPassage(line);
 			}
 		}
+		
+		this.questionIterator = questions.keySet().iterator();
 	}	
 	
 	private boolean isQuestion(String line) {
@@ -136,7 +140,7 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 			throw new CollectionException(); //No further questions, Your Honor!
 
 		//Get the next question
-		Integer qnum = this.QuestionIterator.next();
+		String qnum = this.questionIterator.next();
 		
 		//Identify relevant texts
 		String question = this.questions.get(qnum).getQuestion();
@@ -184,7 +188,7 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 
 	@Override
 	public boolean hasNext() throws IOException, CollectionException {
-		return this.QuestionIterator.hasNext();
+		return this.questionIterator.hasNext();
 	}
 
 }

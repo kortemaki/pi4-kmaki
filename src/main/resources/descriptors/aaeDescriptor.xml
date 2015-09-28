@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
-  <primitive>false</primitive>  <analysisEngineMetaData>
+  <primitive>false</primitive>  
+  <delegateAnalysisEngineSpecifiers>
+    <delegateAnalysisEngine key="TestElementAnnotator">
+      <import name="descriptors.annotators.TestElementAnnotator"/>
+    </delegateAnalysisEngine>
+  </delegateAnalysisEngineSpecifiers>
+  <analysisEngineMetaData>
     <name>aaeDescriptor</name>
-    <description>This is a template (empty) descriptor for your Aggerate Analysis Engine.  You will need to specify your type system and capabilities, in addition to your individual analysis engines.</description>
+    <description>Aggregate analysis engine for PI4.
+
+Annotates questions and associated passages for their underlying spans.</description>
     <version>1.0</version>
     <vendor/>
     <configurationParameters/>
     <configurationParameterSettings/>
     <flowConstraints>
-      <fixedFlow/>
+      <fixedFlow>
+        <node>TestElementAnnotator</node>
+      </fixedFlow>
     </flowConstraints>
     <typePriorities/>
     <fsIndexCollection/>

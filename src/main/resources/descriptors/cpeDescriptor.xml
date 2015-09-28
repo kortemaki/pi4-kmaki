@@ -31,6 +31,14 @@
             <timeout max="100000" default="-1"/>
         </errorHandling>
         <checkpoint batch="10000" time="1000ms"/>
+        <configurationParameterSettings>
+            <nameValuePair>
+                <name>OutputDir</name>
+                <value>
+                    <string>/media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/outputData</string>
+                </value>
+            </nameValuePair>
+        </configurationParameterSettings>
     </casProcessor>
     </casProcessors>
     <cpeConfig>
