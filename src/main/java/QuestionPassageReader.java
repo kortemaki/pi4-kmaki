@@ -14,6 +14,9 @@ import org.apache.uima.collection.CollectionException;
 import org.apache.uima.collection.CollectionReader_ImplBase;
 import org.apache.uima.examples.SourceDocumentInformation;
 import org.apache.uima.jcas.JCas;
+import org.apache.uima.jcas.cas.EmptyFSList;
+import org.apache.uima.jcas.cas.FSList;
+import org.apache.uima.jcas.cas.NonEmptyFSList;
 import org.apache.uima.resource.ResourceConfigurationException;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.util.FileUtils;
@@ -48,7 +51,7 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 	
 	private static final String QUESTION_MARKER = "QUESTION";
 	
-	private Map<Integer,Entry> questions;
+	private Map<String,Entry> questions;
 	private Iterator<Integer> QuestionIterator;
 	private String mEncoding;
 	private String mLanguage;
@@ -86,11 +89,11 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		}
 
 		//Get the questions and passages and index based on question number
-		this.questions = new TreeMap<Integer,Entry>();
+		this.questions = new TreeMap<String,Entry>();
 
 		for(String line : text.split("\n"))
 		{
-			int qnum = getQnum(line);
+			String qnum = getQnum(line);
 			if(!questions.containsKey(qnum))
 				questions.put(qnum, new Entry());
 			//if question
@@ -109,12 +112,10 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		return line.split(WHITESPACE)[1]==QUESTION_MARKER;
 	}
 
-	private static Integer getQnum(String line) {
-		Scanner scan = new Scanner(line);
-		int num = scan.nextInt();
-		scan.close();
-		return num;
+	private static String getQnum(String line) {
+		return line.split(WHITESPACE)[0];
 	}
+	
 	@Override
 	public void getNext(CAS aCAS) throws IOException, CollectionException {
 		//Can we even get another question?
@@ -157,9 +158,41 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 		srcDocInfo.setLastSegment(!this.hasNext());
 		srcDocInfo.addToIndexes();
 
+		annotateCASForTestElement(jcas,question,passages);
+	}
+	
+	/**
+	 * Add the initial test element annotation
+	 * of question and passages
+	 * Taking care of this now will help
+	 * reduce redundancy of implementation
+	 */
+	private void annotateCASForTestElement(JCas jcas, 
+			String question, List<String> passages) {
 		int index = question.length();
-		new TestElementAnnotation
-		
+		String qnum = question.split(WHITESPACE)[0];
+		type.Question te = new type.Question(jcas); // the test element
+		te.setBegin(0);
+		te.setEnd(index);
+		te.setId(qnum);
+		te.setComponentId(this.getClass().getName());
+		FSList tePassages = new EmptyFSList(jcas);
+		for(String passage : passages)
+		{
+			type.Passage tePassage = new type.Passage(jcas); 
+			tePassage.setBegin(index);
+			tePassage.setEnd(passage.length());
+			String sourceDocID = passage.split(WHITESPACE)[1];
+			String label = passage.split(WHITESPACE)[2];
+			int textStart = qnum.length() + sourceDocID.length() + label.length() + 1; 
+			tePassage.setText(passage.substring(textStart));
+			tePassage.setSourceDocId(sourceDocID);
+			tePassage.setLabel(label.equals("1"));
+			tePassage.setComponentId(this.getClass().getName());
+			NonEmptyFSList tepass = new NonEmptyFSList(jcas);
+			tepass.setHead(tePassage);
+			tepass.setTail(tePassages);
+		}
 	}
 
 	@Override
