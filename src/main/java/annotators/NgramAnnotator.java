@@ -108,6 +108,7 @@ public class NgramAnnotator extends CasAnnotator_ImplBase {
 			annot.setPassageNgrams(passagesNgrams);
 			annot.setBegin(te.getBegin());
 			annot.setEnd(te.getEnd());
+			annot.setQuestion(te.getQuestion());
 			annot.setComponentId(NAME);
 			annot.addToIndexes();
 		}
@@ -130,6 +131,7 @@ public class NgramAnnotator extends CasAnnotator_ImplBase {
 		ngrams.setBegin(begin);
 		ngrams.setEnd(end);
 		ngrams.setText(tokens.getText());
+		ngrams.setSpan(tokens.getSpan());
 		ngrams.setComponentId(NAME);
 		
 		//Populate the ngram annotations
@@ -165,6 +167,7 @@ public class NgramAnnotator extends CasAnnotator_ImplBase {
 		{
 			ngrams.setNgrams(null);
 		}
+		ngrams.addToIndexes();
 		return ngrams;
 		
 	}

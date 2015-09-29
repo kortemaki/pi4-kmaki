@@ -123,7 +123,15 @@ public class TestElementAnnotator extends CasAnnotator_ImplBase
 			passageSpan.addToIndexes();
 			tePassage.setPassage(passageSpan);
 			tePassage.setSourceDocId(sourceDocID);
-			tePassage.setLabel(label.equals("1"));
+			try
+			{
+				tePassage.setLabel(Integer.parseInt(label) > 0);
+			}
+			catch(NumberFormatException e)
+			{
+				tePassage.setLabel(false);
+			}
+			tePassage.setQuestion(te);
 			tePassage.setComponentId(this.getClass().getName());
 			tePassage.addToIndexes();
 			NonEmptyFSList tepass = new NonEmptyFSList(jcas);

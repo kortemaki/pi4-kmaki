@@ -1,24 +1,25 @@
 
 
-/* First created by JCasGen Mon Sep 28 15:24:45 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 20:48:48 EDT 2015 */
 package type;
 
 import org.apache.uima.jcas.JCas; 
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
+import org.apache.uima.jcas.cas.FSList;
 
 
-/** A span with a score
+/** Annotation holding the ranking scores for each of the passages associated with this Test Element.
  * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class ScoredSpan extends SpanModification {
+public class Scoring extends TestElementAnnotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(ScoredSpan.class);
+  public final static int typeIndexID = JCasRegistry.register(Scoring.class);
   /** @generated
    * @ordered 
    */
@@ -32,14 +33,14 @@ public class ScoredSpan extends SpanModification {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected ScoredSpan() {/* intentionally empty block */}
+  protected Scoring() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public ScoredSpan(int addr, TOP_Type type) {
+  public Scoring(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -47,7 +48,7 @@ public class ScoredSpan extends SpanModification {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public ScoredSpan(JCas jcas) {
+  public Scoring(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -57,7 +58,7 @@ public class ScoredSpan extends SpanModification {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public ScoredSpan(JCas jcas, int begin, int end) {
+  public Scoring(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -76,25 +77,25 @@ public class ScoredSpan extends SpanModification {
  
     
   //*--------------*
-  //* Feature: score
+  //* Feature: scores
 
-  /** getter for score - gets The score for this annotation
+  /** getter for scores - gets The list of scores for each of the respective passages associated with this Test Element.
    * @generated
    * @return value of the feature 
    */
-  public double getScore() {
-    if (ScoredSpan_Type.featOkTst && ((ScoredSpan_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "type.ScoredSpan");
-    return jcasType.ll_cas.ll_getDoubleValue(addr, ((ScoredSpan_Type)jcasType).casFeatCode_score);}
+  public FSList getScores() {
+    if (Scoring_Type.featOkTst && ((Scoring_Type)jcasType).casFeat_scores == null)
+      jcasType.jcas.throwFeatMissing("scores", "type.Scoring");
+    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Scoring_Type)jcasType).casFeatCode_scores)));}
     
-  /** setter for score - sets The score for this annotation 
+  /** setter for scores - sets The list of scores for each of the respective passages associated with this Test Element. 
    * @generated
    * @param v value to set into the feature 
    */
-  public void setScore(double v) {
-    if (ScoredSpan_Type.featOkTst && ((ScoredSpan_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "type.ScoredSpan");
-    jcasType.ll_cas.ll_setDoubleValue(addr, ((ScoredSpan_Type)jcasType).casFeatCode_score, v);}    
+  public void setScores(FSList v) {
+    if (Scoring_Type.featOkTst && ((Scoring_Type)jcasType).casFeat_scores == null)
+      jcasType.jcas.throwFeatMissing("scores", "type.Scoring");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Scoring_Type)jcasType).casFeatCode_scores, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

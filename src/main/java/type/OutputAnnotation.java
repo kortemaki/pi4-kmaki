@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Mon Sep 28 15:24:45 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 21:05:02 EDT 2015 */
 package type;
 
 import org.apache.uima.jcas.JCas; 
@@ -9,16 +9,16 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 
-/** A span with a score
+/** The finished output for the annotated test element.
  * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class ScoredSpan extends SpanModification {
+public class OutputAnnotation extends TestElementAnnotation {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(ScoredSpan.class);
+  public final static int typeIndexID = JCasRegistry.register(OutputAnnotation.class);
   /** @generated
    * @ordered 
    */
@@ -32,14 +32,14 @@ public class ScoredSpan extends SpanModification {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected ScoredSpan() {/* intentionally empty block */}
+  protected OutputAnnotation() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public ScoredSpan(int addr, TOP_Type type) {
+  public OutputAnnotation(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -47,7 +47,7 @@ public class ScoredSpan extends SpanModification {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public ScoredSpan(JCas jcas) {
+  public OutputAnnotation(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -57,7 +57,7 @@ public class ScoredSpan extends SpanModification {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public ScoredSpan(JCas jcas, int begin, int end) {
+  public OutputAnnotation(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -76,25 +76,25 @@ public class ScoredSpan extends SpanModification {
  
     
   //*--------------*
-  //* Feature: score
+  //* Feature: output
 
-  /** getter for score - gets The score for this annotation
+  /** getter for output - gets The output for the annotated test element.
    * @generated
    * @return value of the feature 
    */
-  public double getScore() {
-    if (ScoredSpan_Type.featOkTst && ((ScoredSpan_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "type.ScoredSpan");
-    return jcasType.ll_cas.ll_getDoubleValue(addr, ((ScoredSpan_Type)jcasType).casFeatCode_score);}
+  public String getOutput() {
+    if (OutputAnnotation_Type.featOkTst && ((OutputAnnotation_Type)jcasType).casFeat_output == null)
+      jcasType.jcas.throwFeatMissing("output", "type.OutputAnnotation");
+    return jcasType.ll_cas.ll_getStringValue(addr, ((OutputAnnotation_Type)jcasType).casFeatCode_output);}
     
-  /** setter for score - sets The score for this annotation 
+  /** setter for output - sets The output for the annotated test element. 
    * @generated
    * @param v value to set into the feature 
    */
-  public void setScore(double v) {
-    if (ScoredSpan_Type.featOkTst && ((ScoredSpan_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "type.ScoredSpan");
-    jcasType.ll_cas.ll_setDoubleValue(addr, ((ScoredSpan_Type)jcasType).casFeatCode_score, v);}    
+  public void setOutput(String v) {
+    if (OutputAnnotation_Type.featOkTst && ((OutputAnnotation_Type)jcasType).casFeat_output == null)
+      jcasType.jcas.throwFeatMissing("output", "type.OutputAnnotation");
+    jcasType.ll_cas.ll_setStringValue(addr, ((OutputAnnotation_Type)jcasType).casFeatCode_output, v);}    
   }
 
     

@@ -10,7 +10,7 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 /** Stores the information of the passage.
- * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
+ * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class Passage extends Span {
@@ -139,6 +139,28 @@ public class Passage extends Span {
     if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_passage == null)
       jcasType.jcas.throwFeatMissing("passage", "type.Passage");
     jcasType.ll_cas.ll_setRefValue(addr, ((Passage_Type)jcasType).casFeatCode_passage, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: question
+
+  /** getter for question - gets The question for which this passage is a candidate answer.
+   * @generated
+   * @return value of the feature 
+   */
+  public Question getQuestion() {
+    if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_question == null)
+      jcasType.jcas.throwFeatMissing("question", "type.Passage");
+    return (Question)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Passage_Type)jcasType).casFeatCode_question)));}
+    
+  /** setter for question - sets The question for which this passage is a candidate answer. 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setQuestion(Question v) {
+    if (Passage_Type.featOkTst && ((Passage_Type)jcasType).casFeat_question == null)
+      jcasType.jcas.throwFeatMissing("question", "type.Passage");
+    jcasType.ll_cas.ll_setRefValue(addr, ((Passage_Type)jcasType).casFeatCode_question, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

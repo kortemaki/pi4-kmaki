@@ -1,25 +1,25 @@
 
 
-/* First created by JCasGen Mon Sep 28 12:13:36 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 21:05:02 EDT 2015 */
 package type;
 
 import org.apache.uima.jcas.JCas; 
 import org.apache.uima.jcas.JCasRegistry;
 import org.apache.uima.jcas.cas.TOP_Type;
 
-import org.apache.uima.jcas.cas.FSList;
+import org.apache.uima.jcas.tcas.Annotation;
 
 
-/** Annotation holding the ranking scores for each of the passages associated with this Test Element.
- * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
+/** An annotation which modifies a span (e.g. a tokenization).
+ * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class PassageScoring extends ComponentAnnotation {
+public class SpanModification extends Span {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(PassageScoring.class);
+  public final static int typeIndexID = JCasRegistry.register(SpanModification.class);
   /** @generated
    * @ordered 
    */
@@ -33,14 +33,14 @@ public class PassageScoring extends ComponentAnnotation {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected PassageScoring() {/* intentionally empty block */}
+  protected SpanModification() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public PassageScoring(int addr, TOP_Type type) {
+  public SpanModification(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -48,7 +48,7 @@ public class PassageScoring extends ComponentAnnotation {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public PassageScoring(JCas jcas) {
+  public SpanModification(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -58,7 +58,7 @@ public class PassageScoring extends ComponentAnnotation {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public PassageScoring(JCas jcas, int begin, int end) {
+  public SpanModification(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -77,25 +77,25 @@ public class PassageScoring extends ComponentAnnotation {
  
     
   //*--------------*
-  //* Feature: scores
+  //* Feature: span
 
-  /** getter for scores - gets The list of scores for each of the respective passages associated with this Test Element.
+  /** getter for span - gets The original span annotation for this downstream annotation.
    * @generated
    * @return value of the feature 
    */
-  public FSList getScores() {
-    if (PassageScoring_Type.featOkTst && ((PassageScoring_Type)jcasType).casFeat_scores == null)
-      jcasType.jcas.throwFeatMissing("scores", "type.PassageScoring");
-    return (FSList)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((PassageScoring_Type)jcasType).casFeatCode_scores)));}
+  public Span getSpan() {
+    if (SpanModification_Type.featOkTst && ((SpanModification_Type)jcasType).casFeat_span == null)
+      jcasType.jcas.throwFeatMissing("span", "type.SpanModification");
+    return (Span)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((SpanModification_Type)jcasType).casFeatCode_span)));}
     
-  /** setter for scores - sets The list of scores for each of the respective passages associated with this Test Element. 
+  /** setter for span - sets The original span annotation for this downstream annotation. 
    * @generated
    * @param v value to set into the feature 
    */
-  public void setScores(FSList v) {
-    if (PassageScoring_Type.featOkTst && ((PassageScoring_Type)jcasType).casFeat_scores == null)
-      jcasType.jcas.throwFeatMissing("scores", "type.PassageScoring");
-    jcasType.ll_cas.ll_setRefValue(addr, ((PassageScoring_Type)jcasType).casFeatCode_scores, jcasType.ll_cas.ll_getFSRef(v));}    
+  public void setSpan(Span v) {
+    if (SpanModification_Type.featOkTst && ((SpanModification_Type)jcasType).casFeat_span == null)
+      jcasType.jcas.throwFeatMissing("span", "type.SpanModification");
+    jcasType.ll_cas.ll_setRefValue(addr, ((SpanModification_Type)jcasType).casFeatCode_span, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

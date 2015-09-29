@@ -11,10 +11,10 @@ import org.apache.uima.jcas.cas.FSArray;
 
 
 /** Holds a set of ngrams annotated within the annotated span.
- * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
+ * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class NgramSet extends Span {
+public class NgramSet extends SpanModification {
   /** @generated
    * @ordered 
    */

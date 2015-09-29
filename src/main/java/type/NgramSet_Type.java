@@ -13,9 +13,9 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Holds a set of ngrams annotated within the annotated span.
- * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
+ * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * @generated */
-public class NgramSet_Type extends Span_Type {
+public class NgramSet_Type extends SpanModification_Type {
   /** @generated 
    * @return the generator for this type
    */

@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Mon Sep 28 15:24:45 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 20:48:48 EDT 2015 */
 package type;
 
 import org.apache.uima.jcas.JCas;
@@ -12,10 +12,10 @@ import org.apache.uima.cas.Type;
 import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
-/** A span with a score
+/** Annotation which builds on a test element.
  * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * @generated */
-public class ScoredSpan_Type extends SpanModification_Type {
+public class TestElementAnnotation_Type extends Span_Type {
   /** @generated 
    * @return the generator for this type
    */
@@ -25,47 +25,47 @@ public class ScoredSpan_Type extends SpanModification_Type {
   private final FSGenerator fsGenerator = 
     new FSGenerator() {
       public FeatureStructure createFS(int addr, CASImpl cas) {
-  			 if (ScoredSpan_Type.this.useExistingInstance) {
+  			 if (TestElementAnnotation_Type.this.useExistingInstance) {
   			   // Return eq fs instance if already created
-  		     FeatureStructure fs = ScoredSpan_Type.this.jcas.getJfsFromCaddr(addr);
+  		     FeatureStructure fs = TestElementAnnotation_Type.this.jcas.getJfsFromCaddr(addr);
   		     if (null == fs) {
-  		       fs = new ScoredSpan(addr, ScoredSpan_Type.this);
-  			   ScoredSpan_Type.this.jcas.putJfsFromCaddr(addr, fs);
+  		       fs = new TestElementAnnotation(addr, TestElementAnnotation_Type.this);
+  			   TestElementAnnotation_Type.this.jcas.putJfsFromCaddr(addr, fs);
   			   return fs;
   		     }
   		     return fs;
-        } else return new ScoredSpan(addr, ScoredSpan_Type.this);
+        } else return new TestElementAnnotation(addr, TestElementAnnotation_Type.this);
   	  }
     };
   /** @generated */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = ScoredSpan.typeIndexID;
+  public final static int typeIndexID = TestElementAnnotation.typeIndexID;
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("type.ScoredSpan");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("type.TestElementAnnotation");
  
   /** @generated */
-  final Feature casFeat_score;
+  final Feature casFeat_question;
   /** @generated */
-  final int     casFeatCode_score;
+  final int     casFeatCode_question;
   /** @generated
    * @param addr low level Feature Structure reference
    * @return the feature value 
    */ 
-  public double getScore(int addr) {
-        if (featOkTst && casFeat_score == null)
-      jcas.throwFeatMissing("score", "type.ScoredSpan");
-    return ll_cas.ll_getDoubleValue(addr, casFeatCode_score);
+  public int getQuestion(int addr) {
+        if (featOkTst && casFeat_question == null)
+      jcas.throwFeatMissing("question", "type.TestElementAnnotation");
+    return ll_cas.ll_getRefValue(addr, casFeatCode_question);
   }
   /** @generated
    * @param addr low level Feature Structure reference
    * @param v value to set 
    */    
-  public void setScore(int addr, double v) {
-        if (featOkTst && casFeat_score == null)
-      jcas.throwFeatMissing("score", "type.ScoredSpan");
-    ll_cas.ll_setDoubleValue(addr, casFeatCode_score, v);}
+  public void setQuestion(int addr, int v) {
+        if (featOkTst && casFeat_question == null)
+      jcas.throwFeatMissing("question", "type.TestElementAnnotation");
+    ll_cas.ll_setRefValue(addr, casFeatCode_question, v);}
     
   
 
@@ -76,13 +76,13 @@ public class ScoredSpan_Type extends SpanModification_Type {
 	 * @param jcas JCas
 	 * @param casType Type 
 	 */
-  public ScoredSpan_Type(JCas jcas, Type casType) {
+  public TestElementAnnotation_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 
  
-    casFeat_score = jcas.getRequiredFeatureDE(casType, "score", "uima.cas.Double", featOkTst);
-    casFeatCode_score  = (null == casFeat_score) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_score).getCode();
+    casFeat_question = jcas.getRequiredFeatureDE(casType, "question", "type.Question", featOkTst);
+    casFeatCode_question  = (null == casFeat_question) ? JCas.INVALID_FEATURE_CODE : ((FeatureImpl)casFeat_question).getCode();
 
   }
 }

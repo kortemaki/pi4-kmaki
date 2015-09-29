@@ -84,6 +84,7 @@ public class TokenizationAnnotator extends CasAnnotator_ImplBase {
 			annot.setPassageTokens(passtoks);
 			annot.setBegin(te.getBegin());
 			annot.setEnd(te.getEnd());
+			annot.setQuestion(te);
 			annot.setComponentId(this.getClass().getName());
 			annot.addToIndexes();
 		}
@@ -132,6 +133,7 @@ public class TokenizationAnnotator extends CasAnnotator_ImplBase {
 		output.setBegin(begin);
 		output.setText(text);
 		output.setEnd(end);
+		output.setSpan(span);
 		output.setComponentId(this.getClass().getName());
 		output.addToIndexes();
 		return output;

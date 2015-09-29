@@ -1,5 +1,5 @@
 
-/* First created by JCasGen Mon Sep 28 12:13:36 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 20:48:48 EDT 2015 */
 package type;
 
 import org.apache.uima.jcas.JCas;
@@ -13,9 +13,9 @@ import org.apache.uima.cas.impl.FeatureImpl;
 import org.apache.uima.cas.Feature;
 
 /** Annotation holding the ranking scores for each of the passages associated with this Test Element.
- * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
+ * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * @generated */
-public class PassageScoring_Type extends ComponentAnnotation_Type {
+public class Scoring_Type extends TestElementAnnotation_Type {
   /** @generated 
    * @return the generator for this type
    */
@@ -25,25 +25,25 @@ public class PassageScoring_Type extends ComponentAnnotation_Type {
   private final FSGenerator fsGenerator = 
     new FSGenerator() {
       public FeatureStructure createFS(int addr, CASImpl cas) {
-  			 if (PassageScoring_Type.this.useExistingInstance) {
+  			 if (Scoring_Type.this.useExistingInstance) {
   			   // Return eq fs instance if already created
-  		     FeatureStructure fs = PassageScoring_Type.this.jcas.getJfsFromCaddr(addr);
+  		     FeatureStructure fs = Scoring_Type.this.jcas.getJfsFromCaddr(addr);
   		     if (null == fs) {
-  		       fs = new PassageScoring(addr, PassageScoring_Type.this);
-  			   PassageScoring_Type.this.jcas.putJfsFromCaddr(addr, fs);
+  		       fs = new Scoring(addr, Scoring_Type.this);
+  			   Scoring_Type.this.jcas.putJfsFromCaddr(addr, fs);
   			   return fs;
   		     }
   		     return fs;
-        } else return new PassageScoring(addr, PassageScoring_Type.this);
+        } else return new Scoring(addr, Scoring_Type.this);
   	  }
     };
   /** @generated */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = PassageScoring.typeIndexID;
+  public final static int typeIndexID = Scoring.typeIndexID;
   /** @generated 
      @modifiable */
   @SuppressWarnings ("hiding")
-  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("type.PassageScoring");
+  public final static boolean featOkTst = JCasRegistry.getFeatOkTst("type.Scoring");
  
   /** @generated */
   final Feature casFeat_scores;
@@ -55,7 +55,7 @@ public class PassageScoring_Type extends ComponentAnnotation_Type {
    */ 
   public int getScores(int addr) {
         if (featOkTst && casFeat_scores == null)
-      jcas.throwFeatMissing("scores", "type.PassageScoring");
+      jcas.throwFeatMissing("scores", "type.Scoring");
     return ll_cas.ll_getRefValue(addr, casFeatCode_scores);
   }
   /** @generated
@@ -64,7 +64,7 @@ public class PassageScoring_Type extends ComponentAnnotation_Type {
    */    
   public void setScores(int addr, int v) {
         if (featOkTst && casFeat_scores == null)
-      jcas.throwFeatMissing("scores", "type.PassageScoring");
+      jcas.throwFeatMissing("scores", "type.Scoring");
     ll_cas.ll_setRefValue(addr, casFeatCode_scores, v);}
     
   
@@ -76,7 +76,7 @@ public class PassageScoring_Type extends ComponentAnnotation_Type {
 	 * @param jcas JCas
 	 * @param casType Type 
 	 */
-  public PassageScoring_Type(JCas jcas, Type casType) {
+  public Scoring_Type(JCas jcas, Type casType) {
     super(jcas, casType);
     casImpl.getFSClassRegistry().addGeneratorForType((TypeImpl)this.casType, getFSGenerator());
 

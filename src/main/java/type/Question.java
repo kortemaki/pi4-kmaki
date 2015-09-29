@@ -11,7 +11,7 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** Stores the information about a question.
- * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
+ * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class Question extends Span {
@@ -123,7 +123,7 @@ public class Question extends Span {
   //*--------------*
   //* Feature: question
 
-  /** getter for question - gets 
+  /** getter for question - gets The Span corresponding to the text of the question annotated by this annotation.
    * @generated
    * @return value of the feature 
    */
@@ -132,7 +132,7 @@ public class Question extends Span {
       jcasType.jcas.throwFeatMissing("question", "type.Question");
     return (Span)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((Question_Type)jcasType).casFeatCode_question)));}
     
-  /** setter for question - sets  
+  /** setter for question - sets The Span corresponding to the text of the question annotated by this annotation. 
    * @generated
    * @param v value to set into the feature 
    */

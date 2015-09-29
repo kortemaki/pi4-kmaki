@@ -11,10 +11,10 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** Annotates a test element with tokenizations for the question and each of its passages.
- * Updated by JCasGen Mon Sep 28 18:37:17 EDT 2015
+ * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class TokenAnnotation extends ComponentAnnotation {
+public class TokenAnnotation extends TestElementAnnotation {
   /** @generated
    * @ordered 
    */

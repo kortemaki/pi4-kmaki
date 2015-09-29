@@ -42,8 +42,8 @@ import org.apache.uima.resource.ResourceInitializationException;
 import type.Ngram;
 import type.NgramAnnotation;
 import type.NgramSet;
-import type.PassageScoring;
 import type.ScoredSpan;
+import type.Scoring;
 import type.Span;
 import type.TokenizedSpan;
 
@@ -80,7 +80,7 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 			//////////////////////
 			// Handle the answers
 			// Create a list to hold our scoring for each answer choice
-			PassageScoring output = new PassageScoring(jcas);
+			Scoring output = new Scoring(jcas);
 			output.setComponentId(this.getClass().getName());
 			output.setBegin(Math.min(questionNgrams.getBegin(), getMinBegin(ngramAnnot.getPassageNgrams())));
 			output.setEnd(Math.max(questionNgrams.getEnd(), getMaxEnd(ngramAnnot.getPassageNgrams())));
@@ -97,6 +97,7 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 				score.setBegin(passageNgrams.getBegin());
 				score.setEnd(passageNgrams.getEnd());
 				score.setText(passageNgrams.getText());
+				score.setSpan(passageNgrams.getSpan());
 				score.setComponentId(this.getClass().getName());
 				System.out.println("Scoring cas");
 				
@@ -110,6 +111,7 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 			output.setScores(scores);
 			output.setBegin(ngramAnnot.getBegin());
 			output.setEnd(ngramAnnot.getEnd());
+			output.setQuestion(ngramAnnot.getQuestion());
 			output.setComponentId(this.getClass().getName());	
 			output.addToIndexes();
 		}

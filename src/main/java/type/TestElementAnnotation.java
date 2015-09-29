@@ -1,6 +1,6 @@
 
 
-/* First created by JCasGen Mon Sep 28 15:24:45 EDT 2015 */
+/* First created by JCasGen Mon Sep 28 20:48:48 EDT 2015 */
 package type;
 
 import org.apache.uima.jcas.JCas; 
@@ -9,16 +9,16 @@ import org.apache.uima.jcas.cas.TOP_Type;
 
 
 
-/** A span with a score
+/** Annotation which builds on a test element.
  * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
-public class ScoredSpan extends SpanModification {
+public class TestElementAnnotation extends Span {
   /** @generated
    * @ordered 
    */
   @SuppressWarnings ("hiding")
-  public final static int typeIndexID = JCasRegistry.register(ScoredSpan.class);
+  public final static int typeIndexID = JCasRegistry.register(TestElementAnnotation.class);
   /** @generated
    * @ordered 
    */
@@ -32,14 +32,14 @@ public class ScoredSpan extends SpanModification {
  
   /** Never called.  Disable default constructor
    * @generated */
-  protected ScoredSpan() {/* intentionally empty block */}
+  protected TestElementAnnotation() {/* intentionally empty block */}
     
   /** Internal - constructor used by generator 
    * @generated
    * @param addr low level Feature Structure reference
    * @param type the type of this Feature Structure 
    */
-  public ScoredSpan(int addr, TOP_Type type) {
+  public TestElementAnnotation(int addr, TOP_Type type) {
     super(addr, type);
     readObject();
   }
@@ -47,7 +47,7 @@ public class ScoredSpan extends SpanModification {
   /** @generated
    * @param jcas JCas to which this Feature Structure belongs 
    */
-  public ScoredSpan(JCas jcas) {
+  public TestElementAnnotation(JCas jcas) {
     super(jcas);
     readObject();   
   } 
@@ -57,7 +57,7 @@ public class ScoredSpan extends SpanModification {
    * @param begin offset to the begin spot in the SofA
    * @param end offset to the end spot in the SofA 
   */  
-  public ScoredSpan(JCas jcas, int begin, int end) {
+  public TestElementAnnotation(JCas jcas, int begin, int end) {
     super(jcas);
     setBegin(begin);
     setEnd(end);
@@ -76,25 +76,25 @@ public class ScoredSpan extends SpanModification {
  
     
   //*--------------*
-  //* Feature: score
+  //* Feature: question
 
-  /** getter for score - gets The score for this annotation
+  /** getter for question - gets The question associated with this annotation.
    * @generated
    * @return value of the feature 
    */
-  public double getScore() {
-    if (ScoredSpan_Type.featOkTst && ((ScoredSpan_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "type.ScoredSpan");
-    return jcasType.ll_cas.ll_getDoubleValue(addr, ((ScoredSpan_Type)jcasType).casFeatCode_score);}
+  public Question getQuestion() {
+    if (TestElementAnnotation_Type.featOkTst && ((TestElementAnnotation_Type)jcasType).casFeat_question == null)
+      jcasType.jcas.throwFeatMissing("question", "type.TestElementAnnotation");
+    return (Question)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((TestElementAnnotation_Type)jcasType).casFeatCode_question)));}
     
-  /** setter for score - sets The score for this annotation 
+  /** setter for question - sets The question associated with this annotation. 
    * @generated
    * @param v value to set into the feature 
    */
-  public void setScore(double v) {
-    if (ScoredSpan_Type.featOkTst && ((ScoredSpan_Type)jcasType).casFeat_score == null)
-      jcasType.jcas.throwFeatMissing("score", "type.ScoredSpan");
-    jcasType.ll_cas.ll_setDoubleValue(addr, ((ScoredSpan_Type)jcasType).casFeatCode_score, v);}    
+  public void setQuestion(Question v) {
+    if (TestElementAnnotation_Type.featOkTst && ((TestElementAnnotation_Type)jcasType).casFeat_question == null)
+      jcasType.jcas.throwFeatMissing("question", "type.TestElementAnnotation");
+    jcasType.ll_cas.ll_setRefValue(addr, ((TestElementAnnotation_Type)jcasType).casFeatCode_question, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     
