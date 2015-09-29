@@ -11,7 +11,7 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** An annotation which modifies a span (e.g. a tokenization).
- * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
+ * Updated by JCasGen Mon Sep 28 22:54:14 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class SpanModification extends Span {
@@ -96,6 +96,28 @@ public class SpanModification extends Span {
     if (SpanModification_Type.featOkTst && ((SpanModification_Type)jcasType).casFeat_span == null)
       jcasType.jcas.throwFeatMissing("span", "type.SpanModification");
     jcasType.ll_cas.ll_setRefValue(addr, ((SpanModification_Type)jcasType).casFeatCode_span, jcasType.ll_cas.ll_getFSRef(v));}    
+   
+    
+  //*--------------*
+  //* Feature: passage
+
+  /** getter for passage - gets Hack to get the span to cast to a passage in the case that it's supposed to.
+   * @generated
+   * @return value of the feature 
+   */
+  public Passage getPassage() {
+    if (SpanModification_Type.featOkTst && ((SpanModification_Type)jcasType).casFeat_passage == null)
+      jcasType.jcas.throwFeatMissing("passage", "type.SpanModification");
+    return (Passage)(jcasType.ll_cas.ll_getFSForRef(jcasType.ll_cas.ll_getRefValue(addr, ((SpanModification_Type)jcasType).casFeatCode_passage)));}
+    
+  /** setter for passage - sets Hack to get the span to cast to a passage in the case that it's supposed to. 
+   * @generated
+   * @param v value to set into the feature 
+   */
+  public void setPassage(Passage v) {
+    if (SpanModification_Type.featOkTst && ((SpanModification_Type)jcasType).casFeat_passage == null)
+      jcasType.jcas.throwFeatMissing("passage", "type.SpanModification");
+    jcasType.ll_cas.ll_setRefValue(addr, ((SpanModification_Type)jcasType).casFeatCode_passage, jcasType.ll_cas.ll_getFSRef(v));}    
   }
 
     

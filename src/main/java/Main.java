@@ -19,8 +19,10 @@ public class Main {
     // component.
 
     // Edit the following code to get the input and output directories from a command line.
-    String inputDir = null;
-    String outputDir = null;
+      if(args.length != 2)
+	  throw new IllegalArgumentException("Wrong number of arguments!");
+    String inputDir = args[0];
+    String outputDir = args[1];
 
     // Instantiate CPE.
     CpeDescription cpeDesc = UIMAFramework.getXMLParser()

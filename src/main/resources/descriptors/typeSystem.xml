@@ -213,6 +213,11 @@ You need to implement the types requried for your ranking model.</description>
           <description>The original span annotation for this downstream annotation.</description>
           <rangeTypeName>type.Span</rangeTypeName>
         </featureDescription>
+        <featureDescription>
+          <name>passage</name>
+          <description>Hack to get the span to cast to a passage in the case that it's supposed to.</description>
+          <rangeTypeName>type.Passage</rangeTypeName>
+        </featureDescription>
       </features>
     </typeDescription>
   </types>

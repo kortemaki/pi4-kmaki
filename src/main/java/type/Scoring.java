@@ -11,7 +11,7 @@ import org.apache.uima.jcas.cas.FSList;
 
 
 /** Annotation holding the ranking scores for each of the passages associated with this Test Element.
- * Updated by JCasGen Mon Sep 28 21:12:51 EDT 2015
+ * Updated by JCasGen Mon Sep 28 22:54:14 EDT 2015
  * XML source: /media/maki/OS/Users/Keith/Documents/CMU/Coursework/11791/PI4/pi4-kmaki/src/main/resources/descriptors/typeSystem.xml
  * @generated */
 public class Scoring extends TestElementAnnotation {

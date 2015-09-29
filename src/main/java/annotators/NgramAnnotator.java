@@ -100,7 +100,9 @@ public class NgramAnnotator extends CasAnnotator_ImplBase {
 			{
 				TokenizedSpan passage = (TokenizedSpan) ((NonEmptyFSList) passages).getHead();
 				NonEmptyFSList next = new NonEmptyFSList(jcas);
-				next.setHead(this.ngramize(passage,jcas));
+				NgramSet ngrams = this.ngramize(passage,jcas);
+				ngrams.setPassage(passage.getPassage());
+				next.setHead(ngrams);
 				next.setTail(passagesNgrams);				
 				passagesNgrams = next;
 				passages = ((NonEmptyFSList) passages).getTail();

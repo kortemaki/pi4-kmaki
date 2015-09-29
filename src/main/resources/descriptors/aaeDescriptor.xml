@@ -16,6 +16,11 @@
       <import name="descriptors.annotators.ScoreAnnotator"/>
     
     </delegateAnalysisEngine>
+  <delegateAnalysisEngine key="outputAnnotator">
+      <import name="descriptors.annotators.outputAnnotator"/>
+    
+    
+    </delegateAnalysisEngine>
   </delegateAnalysisEngineSpecifiers>
   <analysisEngineMetaData>
     <name>aaeDescriptor</name>
@@ -32,6 +37,7 @@ Annotates questions and associated passages for their underlying spans.</descrip
       <node>TokenizationAnnotator</node>
       <node>NgramAnnotator</node>
       <node>ScoreAnnotator</node>
+      <node>outputAnnotator</node>
       </fixedFlow>
     </flowConstraints>
     <typePriorities/>

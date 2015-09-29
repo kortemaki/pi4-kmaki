@@ -76,85 +76,33 @@ public class OutputAnnotator extends CasAnnotator_ImplBase {
 
 		// Iterate over them in sequence
 		for(Scoring annot : scoreIndex)
-		{			
+		{				
 			//////////////////////
-			// Handle the question
-			// get the question number
-			String qnum = annot.getQuestion().getId();
-			String filename = "a"+qnum+".txt";
-			
-			//////////////////////
-			// Handle the answers
-			// Iterate over the answers for this Test Element and compute the scores
+			// Handle the passages
+			// Iterate over the passages for this Test Element and compute the scores
 			FSList passages = annot.getScores();
 			List<String> lines = new ArrayList<String>();
 			while(!(passages instanceof EmptyFSList))
 			{
 				ScoredSpan scored = (ScoredSpan) ((NonEmptyFSList) passages).getHead();
 				Double score = scored.getScore();
-				Passage passage = (Passage) scored.getSpan();
-				String line = passage.getQuestion().getId() + passage.getSourceDocId() 
-							  + String.format("%.3f",score) + passage.getText();
+				Passage passage = scored.getPassage();
+				Span span = passage.getPassage();
+				String line = passage.getQuestion().getId() + " " + passage.getSourceDocId() + " " + 
+								String.format("%.3f",score) + " " + span.getText();
 				passages = ((NonEmptyFSList) passages).getTail();
 				lines.add(line);
 			}
-			/**
-			// Get the Precision at N while sorting the lines by score
-			int correct = 0;
-			int N = countNumCorrect(answers);
-			String[] lines = new String[answers.size()];
-			for(int i=0; i < answers.size(); i++)
-			{
-				//Identify our system's next guess
-				Float best = (float) 0;
-				String next = null;
-				for(String el : map.keySet())
-				{
-					if(next==null || scores.get(map.get(el)) > best)
-					{
-						best = scores.get(map.get(el));
-						next = el;
-					}
-				}
-				
-				//See if it counts for precision@N
-				int j = map.get(next);
-				Answer ans = (Answer) answers.get(j);
-				if(i<N && ans.getCorrect())
-					correct++;
-				
-				//Remove it from the map and add it to our output lines
-				map.remove(next);
-				lines[i] = next;
-			}
-			//Compute final output
-			String precAtN = String.format("%.4f",((float) correct)/N);
-			String text = precAtN+"\n"+String.join("\n",lines);
-			*/
+			
 			String text = String.join("\n", lines);
 			OutputAnnotation output = new OutputAnnotation(jcas);
 			output.setComponentId(this.getClass().getName());
 			output.setBegin(annot.getBegin());
 			output.setEnd(annot.getEnd());
 			output.setQuestion(annot.getQuestion());
-			output.setText(text);
+			output.setText(annot.getQuestion().getId());
+			output.setOutput(text);
 			output.addToIndexes();
 		}
-	}
-	/**
-	 * Auxiliary method to compute the number of answers which are correct in arr
-	 * 
-	 * @return the number of "correct" answers in arr
-	 */
-	private int countNumCorrect(FSArray arr)
-	{
-		int count = 0;
-		for(int i=0; i<arr.size(); i++)
-		{
-			Passage ans = (Passage) arr.get(i);
-			if(ans.getLabel())
-				count++;
-		}
-		return count;
 	}
 }

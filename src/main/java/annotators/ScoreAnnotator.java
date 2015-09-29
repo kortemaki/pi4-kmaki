@@ -98,8 +98,8 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 				score.setEnd(passageNgrams.getEnd());
 				score.setText(passageNgrams.getText());
 				score.setSpan(passageNgrams.getSpan());
+				score.setPassage(passageNgrams.getPassage());
 				score.setComponentId(this.getClass().getName());
-				System.out.println("Scoring cas");
 				
 				score.setScore(this.score(questionNgrams,passageNgrams));
 				score.addToIndexes();
@@ -158,18 +158,21 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 	 */
 	private Double score(NgramSet tokens1, NgramSet tokens2)
 	{	
-		System.out.println("Call to score");
 		return (double) tokenOverlap(tokens1.getNgrams(), tokens2.getNgrams());
 	}
 	
 	private float tokenOverlap(FSArray tokens1, FSArray tokens2)
 	{
+		if(tokens1 == null || tokens2 == null)
+			return 0;
+		
 		float count = 0;
 		for(int i = 0; i < tokens1.size(); i++)
 		{
 			for(int j = 0; j < tokens2.size(); j++)
 			{
-				if(sameNgram((Ngram) tokens1.get(i), (Ngram) tokens2.get(j)))
+				if(tokens1.get(i) != null && tokens2.get(j) != null
+						&& sameNgram((Ngram) tokens1.get(i), (Ngram) tokens2.get(j)))
 					count++;
 			}
 		}

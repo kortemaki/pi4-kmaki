@@ -76,7 +76,9 @@ public class TokenizationAnnotator extends CasAnnotator_ImplBase {
 			{
 				Passage passage = (Passage) ((NonEmptyFSList) passages).getHead();
 				NonEmptyFSList next = new NonEmptyFSList(jcas);
-				next.setHead(this.tokenize(passage.getPassage(),jcas));
+				TokenizedSpan tokenization = this.tokenize(passage.getPassage(),jcas);
+				tokenization.setPassage(passage);
+				next.setHead(tokenization);
 				next.setTail(passtoks);
 				passtoks = next;
 				passages = ((NonEmptyFSList) passages).getTail();
