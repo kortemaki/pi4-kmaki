@@ -58,7 +58,7 @@ public class QuestionPassageReader extends CollectionReader_ImplBase {
 	 */
 	public static final String PARAM_LANGUAGE = "Language";
 
-	private static final String FILENAME = "questions_and_passages.txt";
+	private static final String FILENAME = "questions_and_passages.txt";//"sample.txt";//
 
 	private static final String WHITESPACE = "\\s";
 	

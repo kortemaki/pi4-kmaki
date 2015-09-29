@@ -39,10 +39,12 @@ import org.apache.uima.jcas.cas.NonEmptyFSList;
 import org.apache.uima.jcas.tcas.Annotation;
 import org.apache.uima.resource.ResourceInitializationException;
 
+import type.Ngram;
 import type.NgramAnnotation;
 import type.NgramSet;
 import type.PassageScoring;
 import type.ScoredSpan;
+import type.Span;
 import type.TokenizedSpan;
 
 /**
@@ -96,6 +98,8 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 				score.setEnd(passageNgrams.getEnd());
 				score.setText(passageNgrams.getText());
 				score.setComponentId(this.getClass().getName());
+				System.out.println("Scoring cas");
+				
 				score.setScore(this.score(questionNgrams,passageNgrams));
 				score.addToIndexes();
 				next.setHead(score);
@@ -123,6 +127,7 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 			int begin = ((Annotation) ((NonEmptyFSList) arr).getHead()).getBegin();
 			if(begin < min)
 				min = begin;
+			arr = ((NonEmptyFSList) arr).getTail();
 		}
 		return min;
 	}
@@ -139,6 +144,7 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 			int end = ((Annotation) ((NonEmptyFSList) arr).getHead()).getBegin();
 			if(end > max)
 				max = end;
+			arr = ((NonEmptyFSList) arr).getTail();
 		}
 		return max;
 	}
@@ -150,6 +156,34 @@ public class ScoreAnnotator extends CasAnnotator_ImplBase {
 	 */
 	private Double score(NgramSet tokens1, NgramSet tokens2)
 	{	
-		return (double) 0; //TODO: Do something actually interesting!
+		System.out.println("Call to score");
+		return (double) tokenOverlap(tokens1.getNgrams(), tokens2.getNgrams());
+	}
+	
+	private float tokenOverlap(FSArray tokens1, FSArray tokens2)
+	{
+		float count = 0;
+		for(int i = 0; i < tokens1.size(); i++)
+		{
+			for(int j = 0; j < tokens2.size(); j++)
+			{
+				if(sameNgram((Ngram) tokens1.get(i), (Ngram) tokens2.get(j)))
+					count++;
+			}
+		}
+		return count/(tokens1.size()*tokens2.size());
+	}
+	
+	private boolean sameNgram(Ngram ngram1, Ngram ngram2)
+	{
+		if(ngram1.getN() != ngram2.getN())
+			return false;
+		for(int i = 0; i < ngram1.getN(); i++)
+		{
+			if(!((Span) ngram1.getTokens().get(i)).getText().equals(
+			    ((Span) ngram2.getTokens().get(i)).getText()))
+				return false;
+		}
+		return true;
 	}
 }
